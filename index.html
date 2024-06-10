@@ -15,7 +15,7 @@
             <button id="search-button"><img src="image/search.png" alt="Search"></button>
         </div>
         <div class="weather" id="weather">
-            <img src="/image/rainly-weather.png" alt="Weather Icon" class="weather-icon" id="weather-icon">
+            <img src="/image/rainy-weather.png" alt="Weather Icon" class="weather-icon" id="weather-icon">
             <h1 class="temp" id="temp">22°C</h1>
             <h2 class="city" id="city">Monrovia</h2>
             <div class="details">
@@ -44,7 +44,7 @@
         // Function to fetch weather data based on city
         async function fetchWeatherData(city) {
             try {
-                const geoResponse = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city},LR&appid=${apiKey}`);
+                const geoResponse = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city},LR&appid=${apiKey}`);
                 const geoData = await geoResponse.json();
                 if (geoData.length === 0) {
                     alert('City not found in Liberia.');
@@ -71,7 +71,7 @@
 
             const weatherIcon = document.getElementById('weather-icon');
             const iconCode = weatherData.weather[0].icon;
-            weatherIcon.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+            weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
         }
 
         // Event listener for the search button
