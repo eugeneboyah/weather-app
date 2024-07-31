@@ -12,15 +12,15 @@
     <div class="card">
         <div class="search">
             <input type="text" placeholder="Enter city name" spellcheck="false" id="city-input">
-            <button id="search-button"><img src="image/search.png" alt="Search"></button>
+            <button id="search-button"><img src="./image/search.png" alt="Search"></button>
         </div>
         <div class="weather" id="weather">
-            <img src="/image/rainy-weather.png" alt="Weather Icon" class="weather-icon" id="weather-icon">
+            <img src="./image/rainy-weather.png" alt="Weather Icon" class="weather-icon" id="weather-icon">
             <h1 class="temp" id="temp">22°C</h1>
             <h2 class="city" id="city">Monrovia</h2>
             <div class="details">
                 <div class="col">
-                    <img src="/image/humidity.png" alt="">
+                    <img src="./image/humidity.png" alt="">
                     <div>
                         <p class="humidity" id="humidity">50%</p>
                         <p>Humidity</p>
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="col">
-                    <img src="/image/wind.png" alt="">
+                    <img src="./image/wind.png" alt="">
                     <div>
                         <p class="wind" id="wind">15 km/h</p>
                         <p>Wind Speed</p>
@@ -38,51 +38,6 @@
         </div>
     </div>
 
-    <script>
-        const apiKey = '54c7c9820c3e3d09f2793f28e26b403a';
-
-        // Function to fetch weather data based on city
-        async function fetchWeatherData(city) {
-            try {
-                const geoResponse = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city},LR&appid=${apiKey}`);
-                const geoData = await geoResponse.json();
-                if (geoData.length === 0) {
-                    alert('City not found in Liberia.');
-                    return;
-                }
-
-                const { lat, lon } = geoData[0];
-                const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`);
-                const weatherData = await weatherResponse.json();
-
-                updateWeatherInfo(city, weatherData);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                alert('Could not fetch weather data. Please try again later.');
-            }
-        }
-
-        // Function to update weather information on the page
-        function updateWeatherInfo(city, weatherData) {
-            document.getElementById('temp').textContent = `${weatherData.main.temp}°C`;
-            document.getElementById('city').textContent = city;
-            document.getElementById('humidity').textContent = `${weatherData.main.humidity}%`;
-            document.getElementById('wind').textContent = `${weatherData.wind.speed} km/h`;
-
-            const weatherIcon = document.getElementById('weather-icon');
-            const iconCode = weatherData.weather[0].icon;
-            weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-        }
-
-        // Event listener for the search button
-        document.getElementById('search-button').addEventListener('click', () => {
-            const city = document.getElementById('city-input').value.trim();
-            if (city) {
-                fetchWeatherData(city);
-            } else {
-                alert('Please enter a city name.');
-            }
-        });
-    </script>
+    <script src="./script.js" type="text/javascript"></script>
 </body>
 </html>
